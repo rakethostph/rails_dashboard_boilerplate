@@ -1,7 +1,7 @@
 module ApplicationHelper
 
 	def app_name
-		appname = "Rails Dashboard Boilerplate" 
+		appname = "Rails Dash" 
 	end
 
 	def year
@@ -9,7 +9,7 @@ module ApplicationHelper
 	end
 
 	def index_bg
-		dummy_photo =  asset_path("bg-masthead.jpg").to_s
+		dummy_photo =  asset_path("img/bg-masthead.jpg").to_s
 	end
 
 	def default_profile

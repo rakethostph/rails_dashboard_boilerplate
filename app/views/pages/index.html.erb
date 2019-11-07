@@ -28,12 +28,12 @@
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">We've got what you need!</h1>
+          <h1 class="text-uppercase text-white font-weight-bold">YOUR FAVORITE SOURCE OF FREE BOOTSTRAP THEMES</h1>
           <hr class="divider my-4">
         </div>
         <div class="col-lg-8 align-self-baseline">
           <%= bootstrap_flash %>
-          <p class="text-white-75 font-weight-light mb-5">Managing Your Clinic has never been easy, Introducing ClinicKo Your One stop dashboard to manage your clinic the easy way.</p>
+          <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
           <%= link_to "Signup", new_user_registration_path, class: "btn btn-primary btn-xl js-scroll-trigger" %>
         </div>
       </div>
@@ -106,7 +106,7 @@
   <!-- Footer -->
   <footer class="bg-light py-5">
     <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
+      <div class="small text-center text-muted">Copyright &copy; <%= year %> - <%= app_name %></div>
     </div>
   </footer>
   <% content_for :page_js do %>
