@@ -1,0 +1,117 @@
+<%= form_with(model: profile, local: true) do |form| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="form-row mb-5">
+  <div class="col-lg-4">
+    <div class="form-group rounded-circle">
+
+      <%= image_tag default_profile, class: "img-thumbnail rounded-circle" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+
+  </div>
+  <div class="col-lg-8">
+    
+
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :middle_name %>
+        <%= form.text_field :middle_name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :gender %>
+        <%= form.select(:gender, Profile.genders.keys.map {|gender| [gender.to_s.titleize,gender]}, { prompt: "Select Gender" }, {class: 'custom-select form-control', id: :gender}) %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :mobile_phone %>
+        <%= form.text_field :mobile_phone, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :Email %>
+        <div class="form-control disabled" readonly>
+          <%= current_user.email %>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :address1 %>
+        <%= form.text_field :address1, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :address2 %>
+        <%= form.text_field :address2, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :city %>
+        <%= form.text_field :city, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :state %>
+        <%= form.text_field :state, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :zipcode %>
+        <%= form.text_field :zipcode, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <%= form.label :country %>
+        <%= form.text_field :country, class: "form-control" %>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+</div>
+<% end %>
