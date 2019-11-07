@@ -1,25 +1,18 @@
-# README
+# Rails Dashboard Boilerplate
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a rails dashboard boilerplate using  [SB Admin 2](https://startbootstrap.com/previews/sb-admin-2/) [@BlackrockDigital](https://github.com/BlackrockDigital). What you can do with this is just add your own design functionality.
 
-Things you may want to cover:
+## Whats included in this dashboard.
 
-* Ruby version
+```ruby
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+gem 'devise'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'font_awesome5_rails'
+gem 'pg'
+```
 
-* System dependencies
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# rails_dashboard_boilerplate
