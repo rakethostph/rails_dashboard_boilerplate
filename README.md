@@ -80,5 +80,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 ```
 
+### Homepage
+![Home](https://github.com/rakethostph/rails_dashboard_boilerplate/blob/master/app/assets/images/screenshot/homepage.png)
+
 
 
