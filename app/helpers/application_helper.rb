@@ -25,14 +25,14 @@ module ApplicationHelper
 	
 
 	def photo_upload
-		dummy_photo =  asset_path("img/dogs/image2.jpeg").to_s
+		dummy_photo =  asset_path("img/dogs/image1.jpeg").to_s
 	end
 
 	def login_photo
-		login_photo = asset_path("img/dogs/image2.jpeg")
+		login_photo = asset_path("img/dogs/image2.jpeg").to_s
 	end
 	def signin_photo
-		login_photo = asset_path("img/dogs/image2.jpeg")
+		login_photo = asset_path("img/dogs/image3.jpeg").to_s
 	end
 
 	def flash_class(level)

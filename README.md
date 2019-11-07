@@ -83,5 +83,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 ### Homepage
 ![Home](https://github.com/rakethostph/rails_dashboard_boilerplate/blob/master/app/assets/images/screenshot/homepage.png)
 
+### Signup
+![Home](https://github.com/rakethostph/rails_dashboard_boilerplate/blob/master/app/assets/images/screenshot/signup.png)
 
+### Login
+![Home](https://github.com/rakethostph/rails_dashboard_boilerplate/blob/master/app/assets/images/screenshot/login.png)
 
+### Dashboard
+![Home](https://github.com/rakethostph/rails_dashboard_boilerplate/blob/master/app/assets/images/screenshot/dashboard.png)
+
+### Profile
+![Home](https://github.com/rakethostph/rails_dashboard_boilerplate/blob/master/app/assets/images/screenshot/profile.png)
