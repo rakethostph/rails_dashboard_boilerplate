@@ -1,47 +1,54 @@
 <% content_for :page_class, "bg-gradient-primary" %>
-
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-9 col-lg-12 col-xl-10">
-      <div class="card shadow-lg o-hidden border-0 my-5">
-        <div class="card-body p-0">
-          <div class="row">
-            <div class="col-lg-6 d-none d-lg-flex">
-              <div class="flex-grow-1 bg-login-image" style="background-image: url(<%= login_photo %>)">
-                
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="p-5">
-                <div class="text-center">
-                  <h4 class="text-dark mb-4">Welcome Back!</h4>
-                </div>
-                <%= form_for(resource, as: resource_name, html: { class: "user"}, url: session_path(resource_name)) do |f| %>
-                <%= bootstrap_flash %>
-                <div class="form-group">
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-user", placeholder: "Email" %>
-                  
-                </div>
-                <div class="form-group">
-                  <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-user", placeholder: "Password" %>
-                  
-                </div>
-                <div class="form-group">
-                  <div class="custom-control custom-checkbox small">
-                    <% if devise_mapping.rememberable? %>
-                    <div class="form-check">
-                      <%= f.check_box :remember_me, class: "form-check-input custom-control-input" %>
-                      <%= f.label :remember_me, class: "form-check-label custom-control-label" %>
-                    </div>
-                    <% end %>
+<section class="wh-100">
+  <div class="d-flex align-items-center fwh-100">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-12 col-xl-10">
+          <div class="card shadow-lg o-hidden border-0 my-5">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-lg-6 d-none d-lg-flex">
+                  <div class="flex-grow-1 bg-login-image" style="background-image: url(<%= login_photo %>)">
                     
                   </div>
                 </div>
-                <%= f.submit "Login", class: "btn btn-primary btn-block text-white btn-user" %>
-                <% end %>
-                <hr>
-                <%= render "devise/shared/links" %>
-                
+                <div class="col-lg-6">
+                  <div class="p-5">
+                    <div class="text-center">
+                      <span style="font-size: 3em;">
+                        <i class="fas fa-user-shield 2x"></i>
+                      </span>
+                      <h4 class="text-dark mb-4">Welcome Back!</h4>
+                     
+                    </div>
+                    <%= form_for(resource, as: resource_name, html: { class: "user"}, url: session_path(resource_name)) do |f| %>
+                    <%= bootstrap_flash %>
+                    <div class="form-group">
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-user", placeholder: "Email" %>
+                      
+                    </div>
+                    <div class="form-group">
+                      <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-user", placeholder: "Password" %>
+                      
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <% if devise_mapping.rememberable? %>
+                        <div class="form-check">
+                          <%= f.check_box :remember_me, class: "form-check-input custom-control-input" %>
+                          <%= f.label :remember_me, class: "form-check-label custom-control-label" %>
+                        </div>
+                        <% end %>
+                        
+                      </div>
+                    </div>
+                    <%= f.submit "Login", class: "btn btn-primary btn-block text-white btn-user" %>
+                    <% end %>
+                    <hr>
+                    <%= render "devise/shared/links" %>
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -49,4 +56,4 @@
       </div>
     </div>
   </div>
-</div>
+</section>

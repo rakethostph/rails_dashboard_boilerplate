@@ -1,0 +1,39 @@
+<h3 class="h3 mb-2 text-gray-800"><%= controller.controller_name.titleize %></h3>
+<%= bootstrap_flash %>
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <div class="d-sm-flex justify-content-between align-items-center">
+      <h6 class="m-0 font-weight-bold text-primary"><%= controller.controller_name.singularize.titleize %> Lists</h6>
+      <%= link_to "Add #{controller.controller_name.singularize.titleize}", new_product_path, class: "btn btn-primary btn-sm d-none d-sm-inline-block" %>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Product name</th>
+            <th>Product price</th>
+            <th>Product description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= product.product_name %><br>
+                <small class="font-weight-light">
+                  <%= link_to 'View', product %>
+                  <%= link_to 'Edit', edit_product_path(product) %>
+                  <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </small>
+              </td>
+              <td><%= product.product_price %></td>
+              <td><%= product.product_description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

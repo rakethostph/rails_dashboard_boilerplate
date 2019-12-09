@@ -1,0 +1,106 @@
+<%= form_with(model: product, local: true) do |form| %>
+<div class="form-row mb-5">
+  <div class="col-lg-4">
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <div class="form-group rounded-circle text-center">
+          <% if @product.product_cover.nil? || @product.product_cover.present? %>
+          <div class="text-center">
+            <%= image_tag @product.product_cover_url(:product_medium).to_s, class: "mb-3 mt-4 img-thumbnail" %>
+          </div>
+        <% else %>
+          <div class="text-center">
+            <%= image_tag product_cover, class: "img-thumbnail" %>
+          </div>
+        <% end %>
+
+          
+        </div>
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <%= form.file_field :product_cover, id: :product_cover, class: "form-control", placeholder: "Profile Picture", aria: {describedby: "iokosuploadfile"} %>
+            <%= form.label "Choose file", class: "custom-file-label text-truncate", for: "product_cover" %>
+            <%= form.hidden_field :avatar_cache %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card  shadow mb-4">
+      <div class="card-header">
+        <h6 class="m-0 font-weight-bold text-primary">Published</h6>
+      </div>
+      <div class="card-body">
+        
+        <div class="actions">
+          <%= form.submit class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="card shadow mb-4">
+      <div class="card-header">
+        <h6 class="m-0 font-weight-bold text-primary"><%= controller.controller_name.titleize %></h6>
+      </div>
+      <div class="card-body">
+        <% if product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+          <ul>
+            <% product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <%= form.label :product_name %>
+              <%= form.text_field :product_name, class: "form-control"  %>
+            </div>
+            <div class="form-group">
+              <%= form.label :product_price %>
+              <%= form.text_field :product_price, class: "form-control"  %>
+            </div>
+            <div class="form-group">
+              <%= form.label :product_description %>
+              <%= form.text_area :product_description, class: "form-control"  %>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<script type="text/javascript">
+jQuery(document).on('turbolinks:load', function() {
+    $('#product_cover').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+
+    function readURL(input) {
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('.img-thumbnail').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#product_cover").change(function() {
+      readURL(this);
+    });
+
+});
+</script>

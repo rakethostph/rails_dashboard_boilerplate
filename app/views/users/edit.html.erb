@@ -1,0 +1,31 @@
+<% content_for :title_head, controller.controller_name.titleize %>
+<% content_for :header, "header" %>
+<% content_for :main, "main" %>
+<% content_for :sidebar_navigation do %>
+  <%= render 'layouts/sidebar_navigation' %>
+<% end %>
+<div class="page">
+<%= render 'layouts/inner_header_nav' %>
+  <section class="mt-5">
+    <div class="container-fluid">
+      	<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="float-left">Edit <%= controller.controller_name.singularize.titleize %></h4> 
+						<div class="float-right">
+						<%= link_to users_path, class: "btn btn-info text-white" do  %>
+						<i class="fas fa-backward"></i> Back to <%= controller.controller_name.singularize.titleize %> List
+						<% end %>
+						</div>
+					</div>
+					<div class="card-body">
+					<%= render 'form', user: @user %>
+					</div>
+				</div>
+			</div>
+      	</div>
+    </div>
+  </section>
+  <%= render 'layouts/inner_footer' %>
+</div>

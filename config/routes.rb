@@ -1,13 +1,24 @@
 Rails.application.routes.draw do
 
-  resources :profiles, only:[:edit, :update]
+  resources :warranties
+  resources :products
+  resources :profiles, only:[:new, :edit, :update, :index]
+  resources :user_admin, only: [:user_admin] #:controller => 'users'
   # post 'profiles#create'
   # get '/profiles/:id/edit', to: 'profiles#edit', as: :edit_profile
   # patch  '/profiles/:id', to: 'profiles#update'
   # put '/profiles/:id', to: 'profiles#update'
+
+  get 'create_users', to: 'pages#create_users'
+  post 'create_users', to: 'pages#create_users'
   
   
   devise_for :users, skip: [:sessions]
+  resources :users
+
+  post 'user_admin', to: 'users#new'
+  get 'user_admin', to: 'users#new'
+
   as :user do
 
     # get 'forgot_password', to: 'devise/passwords#new', as: :new_user_password
@@ -34,5 +45,6 @@ Rails.application.routes.draw do
       root to: 'pages#index', as: :unauthenticated_root
     end
   end
+  get '*path' => redirect('/404.html')
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

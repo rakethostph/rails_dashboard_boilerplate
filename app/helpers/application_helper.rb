@@ -1,7 +1,7 @@
 module ApplicationHelper
 
 	def app_name
-		appname = "Rails Dash" 
+		appname = "iokos" 
 	end
 
 	def year
@@ -20,6 +20,10 @@ module ApplicationHelper
 	def full_name
 		"#{current_user.profile.first_name} #{current_user.profile.last_name}"
 		
+	end
+
+	def product_cover
+		dummy_photo =  asset_path("img/box.png").to_s
 	end
 
 	
@@ -73,4 +77,11 @@ module ApplicationHelper
 	    end
 	    flash_messages.join("\n").html_safe
 	end
+	def is_active_controller(controller_name, class_name = nil)
+        if params[:controller] == controller_name
+         class_name == nil ? "active" : class_name
+        else
+           nil
+        end
+    end
 end

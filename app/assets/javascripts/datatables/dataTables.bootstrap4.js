@@ -10,7 +10,6 @@
  * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
  * for further information.
  */
-
 	(function( factory ){
 		if ( typeof define === 'function' && define.amd ) {
 			// AMD

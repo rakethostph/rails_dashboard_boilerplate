@@ -20,7 +20,7 @@
 //= require js/chart.min
 //= require js/theme
 //= require js/script.min
-//= require_tree .
+
 
 $(function () {
 	$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
