@@ -11,7 +11,9 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
   
-  # enum roles: [:admin, :agent, :client]
+  enum roles: [:client, :agent, :distributor, :admin,]
+
+  # validates :roles, :presence => :true
 
   def assign_default_role
     self.add_role(:client) if self.roles.blank?

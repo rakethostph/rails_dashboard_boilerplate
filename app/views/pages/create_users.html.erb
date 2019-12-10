@@ -1,5 +1,5 @@
-<%= form_for(create_users_path, :method => "post") do %>
-<% if @user.errors.any? %>
+<%= form_with(model: @user, local: true) do |form| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation" class="alert alert-danger alert-dismissible fade show" role="alert">
       <h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
 
@@ -13,22 +13,39 @@
       </button>
     </div>
   <% end %>
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h6 class="card-title"><%= controller.controller_name.titleize %></h6>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <%= form.select(:roles, User.roles.keys.map {|role| [role.titleize,role]}, {include_blank: "Select a Role" }, class: "custom-select") %>
+        </div>
+        <div class="form-group">
+          <%= form.label :email %>
+          <%= form.text_field :email, id: :email, class: "form-control"  %>
+        </div>
 
+        <div class="form-group">
+          <%= form.label :password %>
+          <%= form.password_field :password, id: :password, class: "form-control"%>
+        </div>
 
-<div class="form-group">
-  <%= label_tag :email %>
-  <%= text_field_tag :email, "", id: :email, class: "form-control"  %>
+        <div class="form-group">
+          <%= form.label :password_confirmation %>
+          <%= form.password_field :password_confirmation, id: :password_confirmation, class: "form-control" %>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-header"><h6 class="card-title">Publish</h6></div>
+      <div class="card-body"><%= form.submit class: "btn btn-primary" %></div>
+    </div>
+  </div>
 </div>
 
-<div class="form-group">
-  <%= label_tag :password %>
-  <%= password_field_tag :password, "", id: :password, class: "form-control"%>
-</div>
-
-<div class="form-group">
-  <%= label_tag :password_confirmation %>
-  <%= password_field_tag :password_confirmation, "", id: :password_confirmation, class: "form-control" %>
-</div>
-
-<%= submit_tag "Add User", class: "btn btn-primary" %>
 <% end %>

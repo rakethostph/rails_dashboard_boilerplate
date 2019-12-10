@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :user_admin, :destroy]
   before_action :authenticate_user!
+  # protect_from_forgery with: :null_session
 
   # GET /users
   # GET /users.json
@@ -29,10 +30,17 @@ class UsersController < ApplicationController
   # # POST /users
   # # POST /users.json
   def create
-    @user = User.new(user_params)
+    # @user = User.new(user_params)
+    @user = User.new
+    @user.email = params[:email]
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password]
+    @user.add_role params[:roles]
+
+
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_url, success: 'user was successfully created.' }
+        format.html { redirect_to users_admin_index_path, success: 'user was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -44,9 +52,15 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+
+    @user.update_attribute(:email, params[:email])
+    @user.update_attribute(:email, params[:password])
+    @user.update_attribute(:email, params[:password])
+    @user.change_role params[:roles]
+
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_url, success: 'user was successfully updated.' }
+        format.html { redirect_to users_admin_index_path, success: 'user was successfully updated.' }
         format.json { render :edit, status: :ok, location: @user }
       else
         format.html { render :edit }

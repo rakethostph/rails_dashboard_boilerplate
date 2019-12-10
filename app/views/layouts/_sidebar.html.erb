@@ -23,8 +23,8 @@
                 <div id="users" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style="">
                   <div class="bg-white py-2 collapse-inner rounded">
 
-                    <%= link_to "All Users", users_path, class: "collapse-item" %>
-                     <%= link_to "Add New User", user_admin_path, class: "collapse-item" %>
+                    <%= link_to "All Users", users_admin_index_path, class: "collapse-item" %>
+                     <%= link_to "Add New User", new_users_admin_path, class: "collapse-item" %>
                     <%= link_to "Edit Profile", edit_profile_path(current_user), class: "collapse-item" %>
                     
                   </div>
@@ -61,7 +61,7 @@
                   <div class="bg-white py-2 collapse-inner rounded">
 
                     <%= link_to "Waranties", warranties_path, class: "collapse-item" %>
-                     <%= link_to "Add New Waranty", new_user_path, class: "collapse-item" %>
+                     <%= link_to "Add New Waranty", new_warranty_path, class: "collapse-item" %>
                     
                   </div>
                 </div>

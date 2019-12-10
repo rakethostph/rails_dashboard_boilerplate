@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :warranties
   resources :products
   resources :profiles, only:[:new, :edit, :update, :index]
-  resources :user_admin, only: [:user_admin] #:controller => 'users'
+  # resources :user_admin, only: [:user_admin] #:controller => 'users'
   # post 'profiles#create'
   # get '/profiles/:id/edit', to: 'profiles#edit', as: :edit_profile
   # patch  '/profiles/:id', to: 'profiles#update'
@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   
   
   devise_for :users, skip: [:sessions]
-  resources :users
+  resources :users_admin, :controller => 'users'
 
-  post 'user_admin', to: 'users#new'
-  get 'user_admin', to: 'users#new'
+  # post 'user_admin', to: 'users#new'
+  # get 'user_admin', to: 'users#new'
 
   as :user do
 

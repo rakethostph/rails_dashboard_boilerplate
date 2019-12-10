@@ -1,3 +1,4 @@
+<% if current_user.profile.first_name.present? && current_user.profile.last_name.present? %>
 <%= bootstrap_flash %>
 <div class="row">
 	<div class="col-lg-3 mb-3">
@@ -48,3 +49,12 @@
 		<% end %>
 	</div>
 </div>
+<% else %>
+<% controller.redirect_to edit_profile_path(current_user.profile), notice: 'You need to add your full name before you will see the dashboard.' %>
+<!-- <script type="text/javascript">
+    $(document).on('turbolinks:load', function() {
+        // Redirect to Current Profile
+        window.location.href = "<%= edit_profile_path(current_user.profile) %>";
+    });
+</script> -->
+<% end -%>

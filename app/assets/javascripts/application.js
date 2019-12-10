@@ -16,10 +16,13 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-//= require js/bs-charts
-//= require js/chart.min
-//= require js/theme
-//= require js/script.min
+//= require js/bs-charts.js
+//= require js/chart.min.js
+//= require js/theme.js
+//= require js/script.min.js
+//= require datatables/jquery.dataTables.js
+//= require datatables/datatables-demo.js
+//= require datatables/dataTables.bootstrap4.js
 
 
 $(function () {

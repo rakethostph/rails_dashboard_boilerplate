@@ -1,24 +1,22 @@
-<p id="notice"><%= notice %></p>
+<%= bootstrap_flash %>
+<div class="form-row">
+	<div class="col-lg-4">
+		<div class="card">
+			<div class="card-body">
+				<%= image_tag @product.product_cover_url(:product_xl).to_s, class: "img-thumbnail" %>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-8">
+		<div class="card">
+			<div class="card-header"><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-info btn-sm" %> <%= link_to 'Back', products_path, class: "btn btn-dark btn-sm" %></div>
+			<div class="card-body">
+				<h2><%= @product.product_name %></h2>
+				<h3><%= @product.product_price %></h3>
+				<div><%= @product.product_description %></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
 
-<p>
-  <strong>Product cover:</strong>
-  <%= @product.product_cover %>
-</p>
-
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
-
-<p>
-  <strong>Product price:</strong>
-  <%= @product.product_price %>
-</p>
-
-<p>
-  <strong>Product description:</strong>
-  <%= @product.product_description %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
