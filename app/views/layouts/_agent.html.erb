@@ -1,0 +1,37 @@
+<ul class="nav navbar-nav text-light" id="accordionSidebar">
+    <li class="nav-item <%= is_action_name( 'index', 'active-nav') %>  nav-item-hover" role="presentation">
+        <%= link_to authenticated_root_path, class: "nav-link" do %>
+        <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+        <% end -%>
+    </li>
+    <li class="nav-item <%= is_action_name( 'agent_page', 'active-nav') %> nav-item-hover">
+        <%= link_to "#",  class: "nav-link collapsed", "data-toggle": "collapse", "data-target": "#users", "aria-expanded": "false", "aria-controls": "users" do %>
+        <i class="fas fa-users"></i>
+        <span>Clients</span>
+        <% end -%>
+        <div id="users" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style="">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <%= link_to "All Clients", agent_page_path, class: "collapse-item" %>
+                <%= link_to "Edit Profile", edit_profile_path(current_user), class: "collapse-item" %>
+                
+            </div>
+        </div>
+    </li>
+    <li class="nav-item <%= is_active_controller( 'products', 'active-nav') %>  nav-item-hover" role="presentation">
+        <%= link_to products_path, class: "nav-link" do %>
+        <i class="fas fa-box"></i> <span>Products</span>
+        <% end -%>
+    </li>
+    <li class="nav-item <%= is_active_controller( 'warranties', 'active-nav') %> nav-item-hover">
+        <%= link_to "#",  class: "nav-link collapsed", "data-toggle": "collapse", "data-target": "#warranties", "aria-expanded": "false", "aria-controls": "warranties" do %>
+        <i class="fas fa-certificate"></i>
+        <span>Warranties</span>
+        <% end -%>
+        <div id="warranties" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style="">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <%= link_to "Waranties", warranties_path, class: "collapse-item" %>
+                <%= link_to "Add New Waranty", new_warranty_path, class: "collapse-item" %>
+            </div>
+        </div>
+    </li>
+</ul>

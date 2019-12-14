@@ -11,6 +11,13 @@ Rails.application.routes.draw do
 
   get 'create_users', to: 'pages#create_users'
   post 'create_users', to: 'pages#create_users'
+
+  get 'distributor_page', to: 'pages#distributor_page'
+  get 'agent_page', to: 'pages#agent_page'
+  get 'client_page', to: 'pages#client_page'
+
+
+
   
   
   devise_for :users, skip: [:sessions]

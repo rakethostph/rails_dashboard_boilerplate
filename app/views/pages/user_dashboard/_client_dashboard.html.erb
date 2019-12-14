@@ -1,0 +1,26 @@
+<% if current_user.profile.first_name.present? && current_user.profile.last_name.present? %>
+<div class="row">
+	<div class="col-lg-6 mb-3">
+		<div class="card shadow h-100">
+			<div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Number of Product Bought</h6>
+            </div>
+			<div class="card-body">
+				<h1><%= @product_bought %></h1>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6 mb-3">
+		<div class="card shadow h-100">
+			<div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Number of Product Warranties</h6>
+            </div>
+			<div class="card-body">
+				<h1><%= @product_bought %></h1>
+			</div>
+		</div>
+	</div>
+</div>
+<% else %>
+<% controller.redirect_to edit_profile_path(current_user.profile), alert: 'You need to add your full name before you will see the dashboard.' %>
+<% end -%>

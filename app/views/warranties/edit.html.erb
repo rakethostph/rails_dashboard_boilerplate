@@ -1,6 +1,14 @@
 <h1 class="h3 mb-2 text-gray-800">Editing <%= controller.controller_name.titleize %></h3>
 
-<%= render 'form', warranty: @warranty %>
+<% if current_user.has_role? :admin %>
+    <%= render 'form', warranty: @warranty %>
+<% elsif current_user.has_role? :distributor %>
+    <%= render 'form', warranty: @warranty %>
+<% elsif current_user.has_role? :agent %>
+    <% controller.redirect_back fallback_location: @warranty, warning: 'Please Contact admin as you dont have enough authorization.' %>
+<% else %>
+    <% controller.redirect_back fallback_location: @warranty, warning: 'Please Contact admin as you dont have enough authorization.' %>
+<% end -%>
 
-<%= link_to 'Show', @warranty %> |
-<%= link_to 'Back', warranties_path %>
+
+

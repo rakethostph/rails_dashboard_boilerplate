@@ -6,11 +6,16 @@
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
                         <% if current_user.profile.first_name.nil? || current_user.profile.first_name.empty?   %>
                         <span class="d-none d-lg-inline mr-2 text-gray-600 small">Your Name</span>
-                        <%= image_tag asset_path("img/avatars/avatar1.jpeg"), class: "border rounded-circle img-profile" %>
+                        
                         <% else %>
                         <span class="d-none d-lg-inline mr-2 text-gray-600 small"><%= full_name %></span>
-                        <%= image_tag current_user.profile.avatar_url(:thumb).to_s, class: "border rounded-circle img-profile" %>
+                        
                         <% end -%>
+                        <% unless current_user.profile.avatar.present?  %>
+                            <%= image_tag asset_path("img/avatars/avatar1.jpeg"), class: "border rounded-circle img-profile" %>
+                        <% else %>
+                            <%= image_tag current_user.profile.avatar_url(:thumb).to_s, class: "border rounded-circle img-profile" %>
+                        <% end %>
 
                         
 

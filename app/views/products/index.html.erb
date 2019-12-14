@@ -24,8 +24,10 @@
               <td><%= product.product_name %><br>
                 <small class="font-weight-light">
                   <%= link_to 'View', product %>
-                  <%= link_to 'Edit', edit_product_path(product) %>
-                  <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% if current_user.has_role? :admin %>
+                    <%= link_to 'Edit', edit_product_path(product) %>
+                    <%= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end -%>
                 </small>
               </td>
               <td><%= product.product_price %></td>

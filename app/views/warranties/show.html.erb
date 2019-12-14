@@ -1,20 +1,71 @@
+<%= bootstrap_flash %>
+<div class="form-row">
+	<div class="col">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="text-center text-success">Limited Warranty:</h3>
+				<table class="table table-bordered">
+					
+					<tbody>
+						<tr>
+							<th class="font-weight-bold" colspan="3">Customer Name:</th>
 
-<p id="notice"><%= notice %></p>
+						</tr>
+						<tr>
+							<td colspan="3"><h5 class="text-info"><%= client_name(@warranty.client_id) %></h5></td>
+						</tr>
+						<tr>
+							<th class="font-weight-bold" colspan="3">Address:</th>
 
-<p>
-  <strong>Product name:</strong>
-  <%= @warranty.product_name %>
-</p>
+						</tr>
+						<tr>
+							<td colspan="3"><h5 class="text-info" colspan="3"><%= adddres(@warranty.client_id) %></h5></td>
+						</tr>
+						<tr>
+							<th class="font-weight-bold">Phone:</th>
+							<th class="font-weight-bold">Email:</th>
+						</tr>
+						<tr>
+							<td><h5 class="text-info"><%= phone(@warranty.client_id) %></h5></td>
+							<td><h5 class="text-info"><%= email(@warranty.client_id) %></h5></td>
+						</tr>
 
-<p>
-  <strong>Product serial number:</strong>
-  <%= @warranty.product_serial_number %>
-</p>
+					</tbody>
+				</table>
 
-<p>
-  <strong>Client:</strong>
-  <%= @warranty.client_id %>
-</p>
+				<table class="table table-bordered">
+					
+					<tbody>
+						<tr>
+							<th class="font-weight-bold" colspan="3">Product Name:</th>
 
-<%= link_to 'Edit', edit_warranty_path(@warranty) %> |
-<%= link_to 'Back', warranties_path %>
+						</tr>
+						<tr>
+							<td colspan="3"><h5 class="text-info"><%= @warranty.product.product_name %></h5></td>
+						</tr>
+						<tr>
+							<th class="font-weight-bold" colspan="3">Agent:</th>
+
+						</tr>
+						<tr>
+							<td colspan="3"><h5 class="text-info" colspan="3"><%= client_name(@warranty.agent_id) %></h5></td>
+						</tr>
+						<tr>
+							<th class="font-weight-bold">Product Serial No.:</th>
+							<th class="font-weight-bold">Date Of Purchase:</th>
+							<th class="font-weight-bold">Expiry Date:</th>
+						</tr>
+						<tr>
+							<td><h5 class="text-info"><%= @warranty.product_serial_number %></h5></td>
+							<td><h5 class="text-info"><%= @warranty.created_at.strftime("%b. %d, %Y") %></h5></td>
+							<td><h5 class="text-info"><%= @warranty.expiry_date.strftime("%b. %d, %Y") %></h5></td>
+						</tr>
+
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</div>
+</div>

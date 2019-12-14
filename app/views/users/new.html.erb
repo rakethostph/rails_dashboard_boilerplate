@@ -1,3 +1,15 @@
 <h1 class="h3 mb-2 text-gray-800">Editing <%= controller.controller_name.titleize %></h3>
 <%= bootstrap_flash %>
-<%= render 'form', user: @user %>
+<% if current_user.has_role? :admin %>
+    <%= render 'form', user: @user %>
+<% elsif current_user.has_role? :distributor %>
+    <%= render 'form', user: @user %>
+<% elsif current_user.has_role? :agent %>
+    <% controller.redirect_back fallback_location: client_page_path, warning: 'Please Contact admin as you dont have enough authorization.' %>
+<% else %>
+    <% controller.redirect_back fallback_location: client_page_path, warning: 'Please Contact admin as you dont have enough authorization.' %>
+<% end -%>
+
+
+
+

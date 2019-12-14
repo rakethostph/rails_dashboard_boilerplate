@@ -1,39 +1,62 @@
+<% if current_user.profile.first_name.present? && current_user.profile.last_name.present? %>
 <h3 class="h3 mb-2 text-gray-800"><%= controller.controller_name.titleize %></h3>
 <%= bootstrap_flash %>
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <div class="d-sm-flex justify-content-between align-items-center">
       <h6 class="m-0 font-weight-bold text-primary"><%= controller.controller_name.singularize.titleize %> Lists</h6>
-      <%= link_to "Add #{controller.controller_name.singularize.titleize}", new_warranty_path, class: "btn btn-primary btn-sm d-none d-sm-inline-block" %>
+      <% if current_user.has_role? [:agent] %>
+        <%= link_to "Add #{controller.controller_name.singularize.titleize}", new_warranty_path, class: "btn btn-primary btn-sm d-none d-sm-inline-block" %>
+      <% end -%>
     </div>
   </div>
   <div class="card-body">
     <div class="table-responsive">
+     
+
       <table class="table table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>Product name</th>
             <th>Product serial number</th>
-            <th>Client</th>
+
+            <th>Agent/Client</th>
+            <th>Date Of Purchased</th>
           </tr>
         </thead>
 
         <tbody>
           <% @warranties.each do |warranty| %>
-            <tr>
-              <td><%= warranty.product_name %><br>
-                <small class="font-weight-light">
-                  <%= link_to 'View', warranty %>
-                  <%= link_to 'Edit', edit_warranty_path(warranty) %>
-                  <%= link_to 'Delete', warranty, method: :delete, data: { confirm: 'Are you sure?' } %>
-                </small>
-              </td>
-              <td><%= warranty.product_serial_number %></td>
-              <td><%= warranty.client_id %></td>
-            </tr>
+            <% if current_user.id == warranty.agent_id %>
+              <tr>
+                <td><%= warranty.product.product_name %><br>
+                  <small class="font-weight-light">
+                    <%= link_to 'View', warranty %>
+                  </small>
+                </td>
+                <td><%= warranty.product_serial_number %></td>
+                <td><%= client_name(warranty.client_id) %></td>
+                <td><%= warranty.created_at.strftime("%b. %d, %Y") %></td>
+              </tr>
+            <% elsif current_user.id == warranty.client_id %>
+              <tr>
+                <td><%= warranty.product.product_name %><br>
+                  <small class="font-weight-light">
+                    <%= link_to 'View', warranty %>
+                  </small>
+                </td>
+                <td><%= warranty.product_serial_number %></td>
+                <td><%= client_name(warranty.agent_id) %></td>
+                <td><%= warranty.created_at.strftime("%b. %d, %Y") %></td>
+              </tr>
+            <% end -%>
           <% end %>
         </tbody>
       </table>
+     
     </div>
   </div>
 </div>
+<% else %>
+<% controller.redirect_to edit_profile_path(current_user.profile), alert: 'You need to add your full name before you can see your warranties.' %>
+<% end -%>

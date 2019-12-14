@@ -1,3 +1,5 @@
 <h1 class="h3 mb-2 text-gray-800">New <%= controller.controller_name.titleize %></h3>
 <%= bootstrap_flash %>
 <%= render 'form', warranty: @warranty %>
+
+<%# controller.redirect_to edit_profile_path(current_user.profile), notice: 'You need to add your full name before you will see the dashboard.' %>

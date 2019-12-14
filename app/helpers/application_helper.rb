@@ -22,6 +22,43 @@ module ApplicationHelper
 		
 	end
 
+	def client_name(user_id)
+		user = User.find(user_id)
+		profiles = Profile.find(user_id)
+		"#{profiles.first_name} #{profiles.last_name}"
+	end
+
+	def agent_name(user_id)
+		user = User.find(user_id)
+		profiles = Profile.where(distributor_id: user_id)
+		"#{profiles.first_name} #{profiles.last_name}"
+	end
+	def agent_email(user_id)
+		user = User.find(user_id)
+		profiles = Profile.where(distributor_id: user_id)
+		"#{user.email}"
+	end
+	def agent_phone(user_id)
+		user = User.find(user_id)
+		"#{user.profiles.mobile_phone}"
+	end
+
+	def adddres(user_id)
+		user = User.find(user_id)
+
+		"#{user.profile.address1} #{user.profile.address2} #{user.profile.city} #{user.profile.state} #{user.profile.country} #{user.profile.zipcode}"
+
+	end
+
+	def phone(user_id)
+		user = User.find(user_id)
+		"#{user.profile.mobile_phone}"
+	end
+	def email(user_id)
+		user = User.find(user_id)
+		"#{user.email}"
+	end
+
 	def product_cover
 		dummy_photo =  asset_path("img/box.png").to_s
 	end
@@ -77,6 +114,7 @@ module ApplicationHelper
 	    end
 	    flash_messages.join("\n").html_safe
 	end
+
 	def is_active_controller(controller_name, class_name = nil)
         if params[:controller] == controller_name
          class_name == nil ? "active" : class_name
@@ -84,4 +122,26 @@ module ApplicationHelper
            nil
         end
     end
+
+    def is_action_name(action_name, class_name = nil)
+        if params[:action] == action_name
+         class_name == nil ? "active" : class_name
+        else
+           nil
+        end
+    end
+
+    # def is_active_action(action_name)
+    #     params[:action] == action_name ? "active" : nil
+    # end
+
+    # def flash_class(level)
+	    # case level
+	    #     when :notice then "alert alert-info"
+	    #     when :success then "alert alert-success"
+	    #     when :error then "alert alert-danger"
+	    #     when :alert then "alert alert-warning"
+	    # end
+	# end
+
 end

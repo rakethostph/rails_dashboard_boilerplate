@@ -1,0 +1,12 @@
+<ul class="nav navbar-nav text-light" id="accordionSidebar">
+    <li class="nav-item <%= is_active_controller( 'pages', 'active-nav') %>  nav-item-hover" role="presentation">
+        <%= link_to authenticated_root_path, class: "nav-link" do %>
+        <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+        <% end -%>
+    </li>
+    <li class="nav-item <%= is_active_controller( 'warranties', 'active-nav') %>  nav-item-hover" role="presentation">
+        <%= link_to warranties_path, class: "nav-link" do %>
+        <i class="fas fa-certificate"></i> <span>My Warranties</span>
+        <% end -%>
+    </li>
+</ul>

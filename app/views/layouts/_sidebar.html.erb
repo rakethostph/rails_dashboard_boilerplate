@@ -5,70 +5,17 @@
             <div class="sidebar-brand-text mx-3"><span><%= app_name %></span></div>
         </a>
         <hr class="sidebar-divider my-0">
-        <ul class="nav navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item <%= is_active_controller( 'pages', 'active-nav') %>  nav-item-hover" role="presentation">
-                <%= link_to authenticated_root_path, class: "nav-link" do %>
-                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
-                <% end -%>
-            </li>
-            
-            <% if current_user.has_role? :admin %>
-            <li class="nav-item <%= is_active_controller( 'users', 'active-nav') %> nav-item-hover">
-                <%= link_to "#",  class: "nav-link collapsed", "data-toggle": "collapse", "data-target": "#users", "aria-expanded": "false", "aria-controls": "users" do %>
-                    <i class="fas fa-users"></i>
-                    <span>Users</span>
-                <% end -%>
+        
+        <% if current_user.has_role? :admin %>
+            <%= render 'layouts/admin' %>
+        <% elsif current_user.has_role? :distributor %>
+            <%= render 'layouts/distributor' %>
+        <% elsif current_user.has_role? :agent %>
+            <%= render 'layouts/agent' %>
+        <% else %>
+            <%= render 'layouts/client' %>
+        <% end -%>
 
-               
-                <div id="users" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style="">
-                  <div class="bg-white py-2 collapse-inner rounded">
-
-                    <%= link_to "All Users", users_admin_index_path, class: "collapse-item" %>
-                     <%= link_to "Add New User", new_users_admin_path, class: "collapse-item" %>
-                    <%= link_to "Edit Profile", edit_profile_path(current_user), class: "collapse-item" %>
-                    
-                  </div>
-                </div>
-            </li>
-            <% end -%>
-            <% if current_user.has_role? :admin %>
-            <li class="nav-item <%= is_active_controller( 'products', 'active-nav') %>  nav-item-hover" role="presentation">
-                <%= link_to "#",  class: "nav-link collapsed", "data-toggle": "collapse", "data-target": "#products", "aria-expanded": "false", "aria-controls": "products" do %>
-                    <i class="fas fa-box"></i>
-                    <span>Products</span>
-                <% end -%>
-                <div id="products" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <%= link_to products_path, class: "collapse-item" do %>
-                            <span>All Product</span>
-                        <% end -%>
-                        <%= link_to new_product_path, class: "collapse-item" do %>
-                            <span>Add New Product</span>
-                        <% end -%>
-                    </div>
-                </div>
-                
-            </li>
-            <% end -%>
-            <li class="nav-item <%= is_active_controller( 'warranties', 'active-nav') %> nav-item-hover">
-                <%= link_to "#",  class: "nav-link collapsed", "data-toggle": "collapse", "data-target": "#warranties", "aria-expanded": "false", "aria-controls": "warranties" do %>
-                    <i class="fas fa-certificate"></i>
-                    <span>Warranties</span>
-                <% end -%>
-
-               
-                <div id="warranties" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar" style="">
-                  <div class="bg-white py-2 collapse-inner rounded">
-
-                    <%= link_to "Waranties", warranties_path, class: "collapse-item" %>
-                     <%= link_to "Add New Waranty", new_warranty_path, class: "collapse-item" %>
-                    
-                  </div>
-                </div>
-            </li>
-
-            
-        </ul>
         <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>
 </nav>

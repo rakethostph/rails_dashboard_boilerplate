@@ -54,8 +54,8 @@ class UsersController < ApplicationController
   def update
 
     @user.update_attribute(:email, params[:email])
-    @user.update_attribute(:email, params[:password])
-    @user.update_attribute(:email, params[:password])
+    @user.update_attribute(:password, params[:password])
+    @user.update_attribute(:password_confirmation, params[:password])
     @user.change_role params[:roles]
 
     respond_to do |format|

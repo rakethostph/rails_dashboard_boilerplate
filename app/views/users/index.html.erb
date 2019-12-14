@@ -23,7 +23,7 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%= user.profile.my_full_name %><br>
+              <td><%= user.my_full_name %><br>
                 <small class="font-weight-light">
                   <%= link_to 'View', users_admin_index_path %>
                   <%= link_to 'Edit', edit_users_admin_path(user) %>
@@ -31,7 +31,7 @@
                 </small>
               </td>
               <td><%= user.email %></td>
-              <td><%= user.roles.name %></td>
+              <td><%= user.users_role %></td>
               <td><%= user.profile.mobile_phone %></td>
              
             </tr>

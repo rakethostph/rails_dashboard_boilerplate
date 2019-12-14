@@ -14,13 +14,27 @@ class Ability
     #   end
     if user.has_role? :admin
         can :manage, :all
+        can :assign_roles, User if user.admin?
+        can :create, User if user.admin?
+
     elsif user.has_role? :distributor
+        can :manage, [:agent, :client]
         can :read, Product
+        can :read, Warranty
+
+        cannot :destroy, Product
+        cannot :destroy, Warranty
+        can :update, User
     elsif user.has_role? :agent
-        can :read, Product
+        # can :read, Product
         can :read, :all
+        # cannot :destroy, Product
+        cannot :destroy, Warranty
+        cannot :edit, Warranty
     else user.has_role? :client
-        can :read, :all
+        can :read, Warranty
+        cannot :destroy, Product
+        cannot :destroy, Warranty
     end
     #
     # The first argument to `can` is the action you are giving the user

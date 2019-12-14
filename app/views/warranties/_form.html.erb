@@ -1,16 +1,20 @@
 
 <%= form_with(model: warranty, local: true) do |form| %>
-<% if warranty.errors.any? %>
-<div id="error_explanation">
-<h2><%= pluralize(warranty.errors.count, "error") %> prohibited this warranty from being saved:</h2>
+  <% if warranty.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <h3><%= pluralize(warranty.errors.count, "error") %> prohibited this warranty from being saved:</h3>
 
-<ul>
-<% warranty.errors.full_messages.each do |message| %>
-<li><%= message %></li>
-<% end %>
-</ul>
-</div>
-<% end %>
+      <ul>
+      <% warranty.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+
 <div class="row mb-3">
   <div class="col-lg-4">
     <div class="card">
@@ -42,7 +46,7 @@
 
         <div class="form-group">
         <%= form.label :client_id %>
-        <%= form.number_field :client_id, class: "form-control" %>
+        <%= form.collection_select :client_id, User.all, :id, :my_full_name, {promt: "Choose a Client" }, class: "custom-select" %>
         </div>
       </div>
     </div>

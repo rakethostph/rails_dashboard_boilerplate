@@ -5,6 +5,7 @@ class WarrantiesController < ApplicationController
   # GET /warranties.json
   def index
     @warranties = Warranty.all
+
   end
 
   # GET /warranties/1
@@ -14,7 +15,16 @@ class WarrantiesController < ApplicationController
 
   # GET /warranties/new
   def new
-    @warranty = Warranty.new
+    if current_user.has_role? :admin
+      @warranty = Warranty.new
+    elsif current_user.has_role? :distributor
+      @warranty = Warranty.new
+    elsif current_user.has_role? :agent
+      @warranty = Warranty.new
+    else
+      redirect_to warranties_path, alert: 'You are not allowed to create new products please contact admin.' 
+    end
+
   end
 
   # GET /warranties/1/edit
@@ -25,7 +35,8 @@ class WarrantiesController < ApplicationController
   # POST /warranties.json
   def create
     @warranty = Warranty.new(warranty_params)
-
+    @warranty.agent_id =  current_user.id
+    @warranty.expiry_date =  (Date.today + 5.year)
     respond_to do |format|
       if @warranty.save
         format.html { redirect_to @warranty, notice: 'Warranty was successfully created.' }
@@ -69,6 +80,6 @@ class WarrantiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def warranty_params
-      params.require(:warranty).permit(:product_name, :product_serial_number, :client_id, :product_id)
+      params.require(:warranty).permit(:product_name, :product_serial_number, :client_id, :product_id, :agent_id)
     end
 end

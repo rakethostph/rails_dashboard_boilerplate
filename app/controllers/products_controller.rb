@@ -4,9 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    if current_user.has_role? :admin
-      @products = Product.all
-    end
+    @products = Product.all
   end
 
   # GET /products/1
@@ -18,6 +16,8 @@ class ProductsController < ApplicationController
   def new
     if current_user.has_role? :admin
       @product = Product.new
+    else
+      redirect_to products_path, alert: 'You are not allowed to create new products please contact admin.' 
     end
   end
 

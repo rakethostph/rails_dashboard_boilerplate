@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_050814) do
+ActiveRecord::Schema.define(version: 2019_12_13_053755) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_cover"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2019_12_07_050814) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "distributor_id"
+    t.integer "agent_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -78,11 +80,13 @@ ActiveRecord::Schema.define(version: 2019_12_07_050814) do
 
   create_table "warranties", force: :cascade do |t|
     t.string "product_name"
+    t.string "product_id"
     t.string "product_serial_number"
     t.integer "client_id"
+    t.integer "agent_id"
+    t.date "expiry_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "product_id"
   end
 
 end
