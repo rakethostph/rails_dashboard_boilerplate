@@ -11,7 +11,8 @@
     <%= yield :page_css %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= yield :page_js %>
-  </head>
+  <link rel="manifest" href="/manifest.json" />
+<meta name="apple-mobile-web-app-capable" content="yes"></head>
   <body id="page-top" class="<%= yield :page_class %>">
     <% if user_signed_in? %>
     <div id="wrapper">
