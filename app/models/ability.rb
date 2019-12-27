@@ -12,10 +12,10 @@ class Ability
     #   else
     #     can :read, :all
     #   end
+
     if user.has_role? :admin
         can :manage, :all
-        can :assign_roles, User if user.admin?
-        can :create, User if user.admin?
+        # can :create, User if user.admin?
 
     elsif user.has_role? :distributor
         can :manage, [:agent, :client]

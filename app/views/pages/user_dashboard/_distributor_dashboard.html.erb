@@ -137,8 +137,12 @@
 <div class="row">
 	<div class="col-lg-12 mb-3 mt-4">
 		<%= month_calendar do |date | %>
-		  <%= date.strftime("%e") %>
-		  
+		  <%= date.day %>
+		  <h5 class="text-center text-danger">
+		  	<span class="p-1">
+		  		<%= total_sales_per_day_by_agent(date, current_user) %>
+		  	</span>
+		  </h5>
 		<% end %>
 	</div>
 </div>

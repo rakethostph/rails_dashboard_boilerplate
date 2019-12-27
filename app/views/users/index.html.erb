@@ -1,10 +1,12 @@
+<% if current_user.has_role? :admin %>
+
 <h3 class="h3 mb-2 text-gray-800"><%= controller.controller_name.titleize %></h3>
 <%= bootstrap_flash %>
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <div class="d-sm-flex justify-content-between align-items-center">
       <h6 class="m-0 font-weight-bold text-primary"><%= controller.controller_name.singularize.titleize %> Lists</h6>
-      <%= link_to "Add #{controller.controller_name.singularize.titleize}", new_users_admin_path, class: "btn btn-primary btn-sm d-none d-sm-inline-block" %>
+      <%= link_to "Add #{controller.controller_name.singularize.titleize}", new_user_path, class: "btn btn-primary btn-sm d-none d-sm-inline-block" %>
     </div>
   </div>
   <div class="card-body">
@@ -25,9 +27,9 @@
             <tr>
               <td><%= user.my_full_name %><br>
                 <small class="font-weight-light">
-                  <%= link_to 'View', users_admin_index_path %>
-                  <%= link_to 'Edit', edit_users_admin_path(user) %>
-                  <%= link_to 'Delete', users_admin_index_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <%= link_to 'View', users_path(user) %>
+                  <%= link_to 'Edit', edit_user_path(user) %>
+                  <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
                 </small>
               </td>
               <td><%= user.email %></td>
@@ -41,3 +43,6 @@
     </div>
   </div>
 </div>
+<% else %>
+<% controller.redirect_to authenticated_root_path, alert: 'You are not authorize to vie this page.' %>
+<% end -%>

@@ -27,9 +27,10 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
-    if current_user.has_role? :distributor
-      @profile.distributor_id = current_user.id
-    end
+    @profile.distributor_id = current_user.id
+    # if current_user.has_role? :distributor
+    #   @profile.distributor_id = current_user.id
+    # end
 
     respond_to do |format|
       if @profile.save

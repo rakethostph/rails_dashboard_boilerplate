@@ -1,15 +1,28 @@
 <% icon_sizes = Rails.configuration.serviceworker.icon_sizes %>
 {
-  "name": "My Progressive Rails App",
-  "short_name": "Progressive",
+  "name": "Warranty Dashboard Iokos",
+  "short_name": "Iokos",
+  "display": "standalone",
   "start_url": "/",
   "icons": [
   <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
     {
-      "src": "<%= image_path "serviceworker-rails/heart-#{dim}.png" %>",
+      "src": "<%= image_path "icon_all/apple-icon-#{dim}.png" %>",
       "sizes": "<%= dim %>",
       "type": "image/png"
-    }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
+    },
+    {
+      "src": "<%= image_path "icon_all/android-icon-#{dim}.png" %>",
+      "sizes": "<%= dim %>",
+      "type": "image/png"
+    }
+    ,
+    {
+      "src": "<%= image_path "icon_all/ms-icon-#{dim}.png" %>",
+      "sizes": "<%= dim %>",
+      "type": "image/png"
+    }
+    <%= i == (icon_sizes.length - 1) ? '' : ',' %>
   <% end %>
   ],
   "theme_color": "#000000",

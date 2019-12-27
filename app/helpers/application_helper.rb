@@ -50,6 +50,20 @@ module ApplicationHelper
 
 	end
 
+	def total_sales_per_day(date)
+		total_sales_per_day = Warranty.where(sale_date: date).count(:client_id)
+		unless total_sales_per_day == 0
+			total_sales_per_day
+		end
+	end
+
+	def total_sales_per_day_by_agent(date, user)
+		total_sales_per_day = Warranty.where(sale_date: date, agent_id: user).count(:client_id)
+		unless total_sales_per_day == 0
+			total_sales_per_day
+		end
+	end
+
 	def phone(user_id)
 		user = User.find(user_id)
 		"#{user.profile.mobile_phone}"

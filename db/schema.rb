@@ -37,8 +37,6 @@ ActiveRecord::Schema.define(version: 2019_12_13_053755) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "distributor_id"
-    t.integer "agent_id"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
@@ -65,6 +63,10 @@ ActiveRecord::Schema.define(version: 2019_12_13_053755) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "admin_id"
+    t.integer "distributor_id"
+    t.integer "agent_id"
+    t.integer "client_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -84,6 +86,8 @@ ActiveRecord::Schema.define(version: 2019_12_13_053755) do
     t.string "product_serial_number"
     t.integer "client_id"
     t.integer "agent_id"
+    t.date "sale_date"
+    t.date "start_time"
     t.date "expiry_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

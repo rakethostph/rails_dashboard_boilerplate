@@ -36,6 +36,8 @@ class WarrantiesController < ApplicationController
   def create
     @warranty = Warranty.new(warranty_params)
     @warranty.agent_id =  current_user.id
+    @warranty.sale_date = Date.today
+    @warranty.start_time = Date.today
     @warranty.expiry_date =  (Date.today + 5.year)
     respond_to do |format|
       if @warranty.save

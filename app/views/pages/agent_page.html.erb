@@ -4,7 +4,7 @@
   <div class="card-header py-3">
     <div class="d-sm-flex justify-content-between align-items-center">
       <h6 class="m-0 font-weight-bold text-primary">Client Lists</h6>
-      <%= link_to "Add #{controller.controller_name.singularize.titleize}", new_users_admin_path, class: "btn btn-primary btn-sm d-none d-sm-inline-block" %>
+      <%= link_to "Add Agent", new_user_path, class: "btn btn-primary btn-sm d-none d-sm-inline-block" %>
     </div>
   </div>
   <div class="card-body">
@@ -22,9 +22,9 @@
         <tbody>
           <% @agents.each do |user| %>
             <tr>
-              <td><%= user.first_name %> <%= user.last_name %></td>
-              <td><%= agent_email(user.user_id) %></td>
-              <td><%= user.mobile_phone  %></td>
+              <td><%= user.profile.first_name %> <%= user.profile.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.profile.mobile_phone  %></td>
              
             </tr>
           <% end %>

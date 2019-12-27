@@ -43,7 +43,7 @@ gem 'font_awesome5_rails'
 gem "rolify"
 gem 'cancancan'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem "simple_calendar", "~> 2.0"
+gem 'simple_calendar', '~> 2.3'
 gem "serviceworker-rails"
 
 group :development, :test do

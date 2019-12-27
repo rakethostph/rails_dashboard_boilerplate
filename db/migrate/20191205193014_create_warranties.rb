@@ -6,6 +6,8 @@ class CreateWarranties < ActiveRecord::Migration[5.2]
       t.string :product_serial_number
       t.integer :client_id
       t.integer :agent_id
+      t.date :sale_date
+      t.date :start_time
       t.date :expiry_date
 
       t.timestamps

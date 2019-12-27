@@ -1,92 +1,67 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :user_admin, :destroy]
   before_action :authenticate_user!
-  # protect_from_forgery with: :null_session
-
-  # GET /users
-  # GET /users.json
   def index
-    @users = User.all
+    @users = User.includes(:roles).where.not(:id => current_user.id)
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  # def show
-  # end
-
-  # GET /users/new
   def new
     @user = User.new
   end
 
-  def user_admin
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
-  # # POST /users
-  # # POST /users.json
   def create
-    # @user = User.new(user_params)
-    @user = User.new
-    @user.email = params[:email]
-    @user.password = params[:password]
-    @user.password_confirmation = params[:password]
-    @user.add_role params[:roles]
+    @user = User.new(user_params)
+      
+    if current_user.has_role? :admin
+      @user.add_role params[:user][:role]
+      @user.admin_id = current_user.id
+    elsif current_user.has_role? :distributor
+      @user.add_role :agent
+      @user.distributor_id = current_user.id
+    end
+    
 
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to users_admin_index_path, success: 'user was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash[:notice] = "Successfully created User." 
+      redirect_to users_path
+    else
+      render :action => 'new'
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def update
-
-    @user.update_attribute(:email, params[:email])
-    @user.update_attribute(:password, params[:password])
-    @user.update_attribute(:password_confirmation, params[:password])
-    @user.change_role params[:roles]
-
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to users_admin_index_path, success: 'user was successfully updated.' }
-        format.json { render :edit, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    @user = User.find(params[:id])
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
+    if @user.has_role? :admin
+      @user.add_role params[:roles]
+    end
+    if @user.update(user_params)
+      flash[:notice] = "Successfully updated User."
+      redirect_to users_path
+    else
+      render :action => 'edit'
     end
   end
 
-  # # DELETE /users/1
-  # # DELETE /users/1.json
+  def authorize_admin
+    redirect_to authenticated_root_path, alert: 'Access Denied' unless current_user.admin?
+  end
+
+
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, success: 'user was successfully destroyed.' }
-      format.json { head :no_content }
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = "Successfully deleted User."
+      redirect_to users_path
     end
-  end
-
+  end 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
-    end
+  def user_params
+     params.require(:user).permit(:email, :password, :password_confirmation, :admin_id, :distributor_id, :agent_id, :client_id)
+  end
 end
