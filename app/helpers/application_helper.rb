@@ -3,14 +3,21 @@ module ApplicationHelper
 	def app_name
 		appname = "iokos" 
 	end
+	
+	def app_logo
+		app_photo =  asset_path("img/gruenheim_logo.png").to_s
+	end
 
 	def year
 		year = Time.new.year
 	end
 
 	def index_bg
-		dummy_photo =  asset_path("img/bg-masthead.jpg").to_s
+		dummy_photo =  asset_path("img/gruenheim.png").to_s
 	end
+
+	
+
 
 	def default_profile
 		default_profile =  asset_path("img/human/avatar_2x.png").to_s
@@ -64,6 +71,17 @@ module ApplicationHelper
 		end
 	end
 
+	def total_sales_per_day_by_agent_and_distributor(date, current_user)
+		user = User.where(distributor_id: current_user)
+		# print only the warranty thats is under distributor agent
+		unless user == current_user
+			total_sales_per_day = Warranty.where(sale_date: date, distributor_id: current_user).count(:client_id)
+			unless total_sales_per_day == 0
+				total_sales_per_day
+			end
+		end
+	end
+
 	def phone(user_id)
 		user = User.find(user_id)
 		"#{user.profile.mobile_phone}"
@@ -84,10 +102,10 @@ module ApplicationHelper
 	end
 
 	def login_photo
-		login_photo = asset_path("img/dogs/image2.jpeg").to_s
+		login_photo = asset_path("img/dogs/gruenheim.jpg").to_s
 	end
 	def signin_photo
-		login_photo = asset_path("img/dogs/image3.jpeg").to_s
+		login_photo = asset_path("img/dogs/gruenheim.jpg").to_s
 	end
 
 	def flash_class(level)

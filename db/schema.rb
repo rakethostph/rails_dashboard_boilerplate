@@ -81,11 +81,11 @@ ActiveRecord::Schema.define(version: 2019_12_13_053755) do
   end
 
   create_table "warranties", force: :cascade do |t|
-    t.string "product_name"
     t.string "product_id"
     t.string "product_serial_number"
     t.integer "client_id"
     t.integer "agent_id"
+    t.integer "distributor_id"
     t.date "sale_date"
     t.date "start_time"
     t.date "expiry_date"

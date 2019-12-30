@@ -140,7 +140,8 @@
 		  <%= date.day %>
 		  <h5 class="text-center text-danger">
 		  	<span class="p-1">
-		  		<%= total_sales_per_day_by_agent(date, current_user) %>
+		  		
+		  		<%= total_sales_per_day_by_agent_and_distributor(date, current_user) %>
 		  	</span>
 		  </h5>
 		<% end %>

@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    
   end
 
   def update
@@ -37,9 +38,11 @@ class UsersController < ApplicationController
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
     if @user.has_role? :admin
-      @user.add_role params[:roles]
+      @user.grant(params[:user][:role])
     end
     if @user.update(user_params)
+    
+
       flash[:notice] = "Successfully updated User."
       redirect_to users_path
     else

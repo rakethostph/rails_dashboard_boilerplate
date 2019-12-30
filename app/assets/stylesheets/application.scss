@@ -73,7 +73,7 @@ $primary: #99C42C;
 }
 
 
-.wh-100{
+/*.wh-100{
   width: 100%;
   height: 100vh;
   background: url(asset_path("img/bg-masthead.jpg"));
@@ -81,7 +81,14 @@ $primary: #99C42C;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}*/
+.wh-100{
+  width: 100%;
+  height: 100vh;
+  background: #121212;
 }
+
+
 .fwh-100{
   width: 100%;
   height: 100%;
